@@ -3,8 +3,9 @@
     <h1>{{title}}</h1>
     <div>
       <VButton 
+        v-if="homePage"
         @btn-click="$emit('toggle-add-task')" 
-        :text="showAddTask ? 'Close' : 'Add Task'  " 
+        :text="showAddTask ? 'Close' : 'Add Task' " 
         :color="showAddTask ? 'red' : 'green' " />
     </div>
   </header>
@@ -21,8 +22,16 @@ export default {
   props: {
     title: String,
     showAddTask: Boolean
+  },
+  computed: {
+    homePage(){
+      if(this.$route.path === '/'){
+        return true
+      }else{
+        return false
+      }
+    }
   }
-
 }
 </script>
 
